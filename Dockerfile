@@ -1,13 +1,10 @@
-FROM node:slim
+FROM ghcr.io/eooce/nodejs:main
 
-WORKDIR /app
+# 安装 curl
+RUN apk add --no-cache curl
 
+# 把你的代码拷贝进容器（如果你需要的话）
 COPY . .
 
-EXPOSE 3000
-
-RUN apt update -y &&\
-    chmod +x index.js &&\
-    npm install 
-    
+# 容器启动时执行什么命令
 CMD ["node", "index.js"]
